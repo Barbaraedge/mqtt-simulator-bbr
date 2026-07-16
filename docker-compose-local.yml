@@ -1,0 +1,8 @@
+services:
+  mqtt-simulator:
+    build: .
+    env_file:
+      - secrets.txt
+    volumes:
+      - ./config:/app/config
+      - ./logs:/app/logs

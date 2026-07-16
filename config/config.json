@@ -1,0 +1,44 @@
+{
+  "log_level": "INFO",
+  "device_display_name": "barbara-mqtt-simulator",
+  "publish_interval_ms": 5000,
+  "fields": [
+    {
+      "name": "pollution_particles",
+      "type": "random",
+      "min": 0,
+      "max": 1
+    },
+    {
+      "name": "alert",
+      "type": "boolean"
+    },
+    {
+      "name": "status",
+      "type": "string",
+      "values": ["OK", "WARNING", "ERROR"]
+    },
+    {
+      "name": "temperature",
+      "type": "sinusoide",
+      "min": 15,
+      "max": 25,
+      "period_ms": 60000
+    },
+    {
+      "name": "tank_level",
+      "type": "rampa",
+      "min": 0,
+      "max": 100,
+      "period_ms": 30000
+    },
+    {
+      "name": "pump_state",
+      "type": "onda_cuadrada",
+      "min": 0,
+      "max": 1,
+      "period_ms": 10000,
+      "duty_cycle": 0.5
+    }
+  ]
+}
