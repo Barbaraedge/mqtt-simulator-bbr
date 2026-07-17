@@ -6,6 +6,11 @@ configurable (random numbers, booleans, strings, or periodic signals such as
 sine wave, ramp, or square wave) via a configuration file that is hot-reloaded
 at runtime, with no need to restart the service.
 
+> This repository is also used for the **Barbara Certification, Level 2
+> (Application Development)** practice. See
+> [`Barbara Certification Practice. Level 2.md`](./Barbara%20Certification%20Practice.%20Level%202.md)
+> for the step-by-step exercise.
+
 ## How it works
 
 1. On startup, the script:
