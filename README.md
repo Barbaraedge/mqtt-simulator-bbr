@@ -20,7 +20,7 @@ at runtime, with no need to restart the service.
      modification time) and, if so, hot-reloads the configuration and logs
      the change.
    - Builds a message using the fields defined in `fields`.
-   - Publishes the message to the `api/v1/barbara/reads` topic.
+   - Publishes the message to the topic defined by `topic`.
 3. The process runs in an infinite loop until it is stopped (`Ctrl+C` or
    container shutdown), at which point it disconnects from the broker
    gracefully.
@@ -70,6 +70,7 @@ locally (used by `docker-compose-local.yml` as an `env_file`).
 |-----------------------|---------|----------------------------------------------------------------|
 | `log_level`           | string  | Minimum log level (`DEBUG`, `INFO`, `WARNING`, `ERROR`, ...)   |
 | `device_display_name` | string  | Value of the payload's `deviceDisplayName` field               |
+| `topic`               | string  | MQTT topic the messages are published to                        |
 | `publish_interval_ms` | number  | Publishing interval, in milliseconds                            |
 | `fields`              | array   | List of fields to include in `data` (see below)                 |
 
@@ -94,6 +95,7 @@ Example configuration:
 {
   "log_level": "INFO",
   "device_display_name": "barbara-mqtt-simulator",
+  "topic": "api/v1/barbara/reads",
   "publish_interval_ms": 5000,
   "fields": [
     { "name": "pollution_particles", "type": "random", "min": 0, "max": 1 },
@@ -110,8 +112,8 @@ Example configuration:
 
 On every publishing cycle, the script checks whether `config/config.json` has
 changed (based on its modification time). If a valid change is detected, all
-parameters (log level, `device_display_name`, `publish_interval_ms`, `fields`)
-are reloaded with no need to restart the process, and a log entry indicates
+parameters (log level, `device_display_name`, `topic`, `publish_interval_ms`,
+`fields`) are reloaded with no need to restart the process, and a log entry indicates
 that new values have been applied. If the modified file contains invalid
 JSON, the previous configuration is kept and the reload is retried on the
 next cycle.

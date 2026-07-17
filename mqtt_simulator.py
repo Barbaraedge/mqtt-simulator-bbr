@@ -30,7 +30,7 @@ MQTT_PORT = os.environ.get("MQTT_SIM_PORT", "")
 MQTT_USER = os.environ.get("MQTT_SIM_USER", "")
 MQTT_PASSWORD = os.environ.get("MQTT_SIM_PASSWORD", "")
 
-TOPIC = "api/v1/barbara/reads"
+DEFAULT_TOPIC = "api/v1/barbara/reads"
 
 REQUIRED_ENV_VARS = {
     "MQTT_SIM_URL": MQTT_URL,
@@ -203,10 +203,11 @@ def main():
         while True:
             config, last_mtime = reload_config_if_changed(config, last_mtime)
 
+            topic = config.get("topic", DEFAULT_TOPIC)
             elapsed_seconds = time.time() - start_time
             message = build_message(config, elapsed_seconds)
-            client.publish(TOPIC, json.dumps(message))
-            logger.info("Message published to topic '%s': %s", TOPIC, message)
+            client.publish(topic, json.dumps(message))
+            logger.info("Message published to topic '%s': %s", topic, message)
 
             interval_seconds = config.get("publish_interval_ms", 5000) / 1000.0
             time.sleep(interval_seconds)

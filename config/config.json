@@ -1,6 +1,7 @@
 {
   "log_level": "INFO",
   "device_display_name": "barbara-mqtt-simulator",
+  "topic": "api/v1/barbara/reads",
   "publish_interval_ms": 5000,
   "fields": [
     {
