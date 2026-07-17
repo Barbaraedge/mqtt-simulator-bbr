@@ -81,11 +81,11 @@ either attribute are ignored (an error is logged). Supported types:
 | `random`          | `min`, `max`                                        | Uniform random number between `min` and `max`                            |
 | `boolean`         | —                                                    | Random `true`/`false`                                                    |
 | `string`          | `values` (list)                                     | Randomly picks one of the given values                                   |
-| `sinusoide`       | `min`, `max`, `period_ms`                           | Sine wave between `min` and `max` with period `period_ms`                |
-| `rampa`           | `min`, `max`, `period_ms`                           | Sawtooth wave: rises from `min` to `max` over `period_ms`, then resets   |
-| `onda_cuadrada`   | `min`, `max`, `period_ms`, `duty_cycle` (default 0.5) | Alternates between `max` and `min`; `duty_cycle` is the fraction of the cycle spent at `max` |
+| `sine_wave`       | `min`, `max`, `period_ms`                           | Sine wave between `min` and `max` with period `period_ms`                |
+| `ramp`            | `min`, `max`, `period_ms`                           | Sawtooth wave: rises from `min` to `max` over `period_ms`, then resets   |
+| `square_wave`     | `min`, `max`, `period_ms`, `duty_cycle` (default 0.5) | Alternates between `max` and `min`; `duty_cycle` is the fraction of the cycle spent at `max` |
 
-Periodic signals (`sinusoide`, `rampa`, `onda_cuadrada`) are computed based on
+Periodic signals (`sine_wave`, `ramp`, `square_wave`) are computed based on
 elapsed time since the script started, not on the number of messages sent.
 
 Example configuration:
@@ -99,9 +99,9 @@ Example configuration:
     { "name": "pollution_particles", "type": "random", "min": 0, "max": 1 },
     { "name": "alert", "type": "boolean" },
     { "name": "status", "type": "string", "values": ["OK", "WARNING", "ERROR"] },
-    { "name": "temperature", "type": "sinusoide", "min": 15, "max": 25, "period_ms": 60000 },
-    { "name": "tank_level", "type": "rampa", "min": 0, "max": 100, "period_ms": 30000 },
-    { "name": "pump_state", "type": "onda_cuadrada", "min": 0, "max": 1, "period_ms": 10000, "duty_cycle": 0.5 }
+    { "name": "temperature", "type": "sine_wave", "min": 15, "max": 25, "period_ms": 60000 },
+    { "name": "tank_level", "type": "ramp", "min": 0, "max": 100, "period_ms": 30000 },
+    { "name": "pump_state", "type": "square_wave", "min": 0, "max": 1, "period_ms": 10000, "duty_cycle": 0.5 }
   ]
 }
 ```

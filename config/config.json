@@ -20,21 +20,21 @@
     },
     {
       "name": "temperature",
-      "type": "sinusoide",
+      "type": "sine_wave",
       "min": 15,
       "max": 25,
       "period_ms": 60000
     },
     {
       "name": "tank_level",
-      "type": "rampa",
+      "type": "ramp",
       "min": 0,
       "max": 100,
       "period_ms": 30000
     },
     {
       "name": "pump_state",
-      "type": "onda_cuadrada",
+      "type": "square_wave",
       "min": 0,
       "max": 1,
       "period_ms": 10000,

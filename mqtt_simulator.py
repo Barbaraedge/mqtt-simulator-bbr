@@ -116,7 +116,7 @@ def generate_field_value(field, elapsed_seconds):
             return ""
         return random.choice(values)
 
-    if field_type == "sinusoide":
+    if field_type == "sine_wave":
         min_value = field.get("min", 0)
         max_value = field.get("max", 1)
         period_seconds = field.get("period_ms", 60000) / 1000.0
@@ -124,14 +124,14 @@ def generate_field_value(field, elapsed_seconds):
         offset = (max_value + min_value) / 2
         return offset + amplitude * math.sin(2 * math.pi * elapsed_seconds / period_seconds)
 
-    if field_type == "rampa":
+    if field_type == "ramp":
         min_value = field.get("min", 0)
         max_value = field.get("max", 1)
         period_seconds = field.get("period_ms", 60000) / 1000.0
         progress = (elapsed_seconds % period_seconds) / period_seconds
         return min_value + (max_value - min_value) * progress
 
-    if field_type == "onda_cuadrada":
+    if field_type == "square_wave":
         min_value = field.get("min", 0)
         max_value = field.get("max", 1)
         period_seconds = field.get("period_ms", 60000) / 1000.0
